@@ -54,8 +54,8 @@ if (isset($_POST["cari"])) {
                             <tr>
                                 <th scope="row"><?= $i ?></th>
                                 <td>
-                                    <a href="ubah.php?id=<?= $mhs["id"]; ?>">edit</a> |
-                                    <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('anda yakin?')">hapus</a>
+                                    <a href="ubah.php?id=<?= $mhs["id"]; ?>" class="badge text-bg-success text-decoration-none px-2">edit</a>
+                                    <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('anda yakin?')" class="badge text-bg-danger text-decoration-none p-1">hapus</a>
                                 </td>
                                 <td>
                                     <img src="img/<?= $mhs["gambar"]; ?>" alt="" width="40px">
