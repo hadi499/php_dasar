@@ -2,8 +2,11 @@
 require 'function.php';
 
 // * ambil data dari tabel mahasiswa
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 
+if (isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
 ?>
 
 <!doctype html>
@@ -22,6 +25,17 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
             <div class="col-md-9">
                 <h3 class="text-center">Daftar Mahasiswa</h3>
                 <a href="tambah.php" class="btn btn-primary my-3">Tambah</a>
+                <div class="row d-flex justify-content-end">
+                    <div class="col-md-5">
+                        <form action="" method="post">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="cari..." name="keyword" autofocus autocomplete="off">
+                                <button class="btn btn-outline-secondary" type="submit" name="cari">Button</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <table class="table">
                     <thead>
                         <tr>
@@ -40,8 +54,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
                             <tr>
                                 <th scope="row"><?= $i ?></th>
                                 <td>
-                                    <a href="">edit</a> |
-                                    <a href="">hapus</a>
+                                    <a href="ubah.php?id=<?= $mhs["id"]; ?>">edit</a> |
+                                    <a href="hapus.php?id=<?= $mhs["id"]; ?>" onclick="return confirm('anda yakin?')">hapus</a>
                                 </td>
                                 <td>
                                     <img src="img/<?= $mhs["gambar"]; ?>" alt="" width="40px">
